@@ -36,6 +36,8 @@ requirements:
     - llvm-openmp                  # [osx]
     - libgomp                      # [not osx]
   host:
+    - llvm-openmp                  # [osx]
+    - libgomp                      # [not osx]
     - r-base
     - r-bh
     - r-rcpp
