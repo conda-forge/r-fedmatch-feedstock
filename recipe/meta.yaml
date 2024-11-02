@@ -1,6 +1,5 @@
 {% set version = '2.0.6' %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-fedmatch
@@ -13,10 +12,9 @@ source:
   sha256: e2e143c3cdda215920f76abf1e1528e2ec000bbe3bb52a4d51559989c3909419
 
 build:
-  merge_build_host: True  # [win]
   missing_dso_whitelist:
     - '*/R.dll'  # [win]
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -36,8 +34,10 @@ requirements:
     - {{ posix }}zip               # [win]
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
     - llvm-openmp                  # [osx]
-    - libgomp                      # [linux]
+    - libgomp                      # [not osx]
   host:
+    - llvm-openmp                  # [osx]
+    - libgomp                      # [not osx]
     - r-base
     - r-bh
     - r-rcpp
@@ -50,8 +50,8 @@ requirements:
     - r-stringdist
     - r-stringr
   run:
+    - libgomp                      # [win]
     - r-base
-    - {{ native }}gcc-libs         # [win]
     - r-rcpp
     - r-snowballc
     - r-data.table
@@ -74,7 +74,6 @@ about:
     allows for three ways to match data: exact matches, fuzzy matches, and multi-variable
     matches. It also allows an easy combination of these three matches via the tier
     matching function.'
-  license_family: MIT
   license_file:
     - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
     - LICENSE
