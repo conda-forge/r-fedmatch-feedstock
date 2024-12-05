@@ -50,7 +50,6 @@ requirements:
     - r-stringdist
     - r-stringr
   run:
-    - libgomp                      # [win]
     - r-base
     - r-rcpp
     - r-snowballc
