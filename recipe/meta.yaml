@@ -1,4 +1,4 @@
-{% set version = '2.0.6' %}
+{% set version = "2.1.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,12 +9,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/fedmatch_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/fedmatch/fedmatch_{{ version }}.tar.gz
-  sha256: e2e143c3cdda215920f76abf1e1528e2ec000bbe3bb52a4d51559989c3909419
+  sha256: b9a4dc092fd4774ebe76311a1cd09330937abb0d260f9e5f8c2b8eae373ecb1d
 
 build:
   missing_dso_whitelist:
     - '*/R.dll'  # [win]
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -70,10 +70,7 @@ test:
 about:
   home: https://CRAN.R-project.org/package=fedmatch
   license: MIT
-  summary: 'Provides a flexible set of tools for matching two un-linked data sets. ''fedmatch''
-    allows for three ways to match data: exact matches, fuzzy matches, and multi-variable
-    matches. It also allows an easy combination of these three matches via the tier
-    matching function.'
+  summary: 'Provides a flexible set of tools for matching two un-linked data sets. ''fedmatch'' allows for three ways to match data: exact matches, fuzzy matches, and multi-variable matches. It also allows an easy combination of these three matches via the tier matching function.'
   license_file:
     - '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
     - LICENSE
